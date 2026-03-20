@@ -137,3 +137,4 @@ def predict():
 @app.route("/history")
 def history():
     return jsonify(list(reading_history))
+
