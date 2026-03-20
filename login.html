@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Customer Login</h2>
+
+<input id="username" placeholder="Username">
+<br><br>
+
+<input id="password" type="password" placeholder="Password">
+<br><br>
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+<script>
+
+function login(){
+
+let user=document.getElementById("username").value
+let pass=document.getElementById("password").value
+
+fetch("/login",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+username:user,
+password:pass
+})
+})
+.then(res=>res.json())
+.then(data=>{
+
+if(data.status=="success"){
+window.location="/"
+}else{
+document.getElementById("msg").innerText="Invalid Login"
+}
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
