@@ -675,7 +675,39 @@ setInterval(updateData, 3000);
 </script>
 </body>
 </html>
- 
+   
 <h2 id="status" style="color:yellow;">
 Waiting for IoT Data...
 </h2>
+<script>
+
+function fetchData(){
+
+fetch("/history")
+.then(res => res.json())
+.then(data => {
+
+    if(data.length == 0){
+        document.getElementById("status").innerText = "Waiting for IoT Data..."
+        document.getElementById("status").style.color = "yellow"
+        return
+    }
+
+    let latest = data[data.length - 1]
+
+    document.getElementById("status").innerText = latest.label
+
+    // color change
+    if(latest.prediction == 1){
+        document.getElementById("status").style.color = "red"
+    } else {
+        document.getElementById("status").style.color = "green"
+    }
+
+})
+}
+
+// auto refresh every 3 seconds
+setInterval(fetchData, 1000)
+
+</script>
