@@ -711,3 +711,28 @@ fetch("/history")
 setInterval(fetchData, 1000)
 
 </script>
+<script>
+
+let alertShown = false;
+
+function fetchData(){
+
+fetch("/history")
+.then(res => res.json())
+.then(data => {
+
+    if(data.length == 0) return;
+
+    let latest = data[data.length - 1]
+
+    if(latest.prediction == 1 && !alertShown){
+        alert("⚠ Electricity Theft Detected");
+        alertShown = true;
+    }
+
+})
+}
+
+setInterval(fetchData, 5000);
+
+</script>
