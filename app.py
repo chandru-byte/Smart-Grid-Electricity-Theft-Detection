@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 
 def send_email_alert():
     sender="chandruv2004gbhss@gmail.com"
-    password="APP_PASSWORD"   # ⚠️ use app password
+    password="tgbf tveu jjnd oqjk"
     receiver="chandruvenkat30@gmail.com"
 
     msg=MIMEText("⚠ Electricity Theft Detected")
@@ -25,6 +25,7 @@ def send_email_alert():
     server.sendmail(sender,receiver,msg.as_string())
     server.quit()
 
+send_email_alert()
 # -------- CONFIG --------
 
 PIPELINE_PATH="smart_grid_pipeline.pkl"
@@ -143,3 +144,4 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+  
