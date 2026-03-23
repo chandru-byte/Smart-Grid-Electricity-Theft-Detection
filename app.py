@@ -25,7 +25,6 @@ def send_email_alert():
     server.sendmail(sender,receiver,msg.as_string())
     server.quit()
 
-send_email_alert()
 # -------- CONFIG --------
 
 PIPELINE_PATH="smart_grid_pipeline.pkl"
@@ -145,12 +144,6 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
   
-from flask import Flask
-import os
-
-app = Flask(__name__)
-
-# your routes here
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
