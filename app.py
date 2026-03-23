@@ -10,19 +10,40 @@ from email.mime.text import MIMEText
 
 # -------- EMAIL ALERT --------
 
-def send_email_alert():
-    sender="chandruv2004gbhss@gmail.com"
-    password="tgbf tveu jjnd oqjk"
-    receiver="chandruvenkat30@gmail.com"
+def send_email_alert(result):
 
-    msg=MIMEText("⚠ Electricity Theft Detected")
-    msg["Subject"]="Smart Grid Alert"
-    msg["From"]=sender
-    msg["To"]=receiver
+    sender = "chandruv2004gbhss@gmail.com"
+    password = "tgbf tveu jjnd oqjk"
+    receiver = "chandruvenkat30@gmail.com"
 
-    server=smtplib.SMTP_SSL("smtp.gmail.com",465)
-    server.login(sender,password)
-    server.sendmail(sender,receiver,msg.as_string())
+    subject = "⚠ Alert: Electricity Theft Detected"
+
+    body = f"""
+Dear User,
+
+A potential electricity theft has been detected in your smart grid system.
+
+🔍 Detection Details:
+- Status: {result['label']}
+- Prediction Value: {result['prediction']}
+- Confidence: {result['confidence']}
+- Theft Probability: {result['theft_probability']}
+- Time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+Please take immediate action.
+
+Regards,  
+Smart Grid Monitoring System  
+"""
+
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = sender
+    msg["To"] = receiver
+
+    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+    server.login(sender, password)
+    server.sendmail(sender, receiver, msg.as_string())
     server.quit()
 
 # -------- CONFIG --------
