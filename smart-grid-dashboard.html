@@ -87,6 +87,7 @@
     font-size: 13px; color: var(--muted); letter-spacing: 1px;
   }
 
+  
   /* ── LAYOUT ── */
   main { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
 
@@ -266,6 +267,19 @@
   </div>
   <div class="header-right">
     <div class="live-badge"><div class="live-dot"></div> Live Monitor</div>
+     <!-- LOGOUT BUTTON -->
+  <button onclick="logout()" style="
+    padding:6px 12px;
+    background:#ff3b5c;
+    color:white;
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+    font-size:12px;
+  ">
+    Logout
+  </button>
+
     <span id="conn-status" class="simulated">⚠ SIMULATED</span>
     <span id="clock">--:--:--</span>
   </div>
@@ -716,6 +730,7 @@ setInterval(fetchData, 1000)
 let alertShown = false;
 
 function fetchData(){
+setInterval(fetchAlert, 5000);
 
 fetch("/history")
 .then(res => res.json())
@@ -735,4 +750,24 @@ fetch("/history")
 
 setInterval(fetchData, 5000);
 
+</script>
+<script>
+function logout(){
+    console.log("Logout clicked");  // debug
+
+    fetch("/logout")
+    .then(res => {
+        console.log("Response:", res);
+
+        if(res.ok){
+            window.location.href = "/";
+        } else {
+            alert("Logout failed");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Server error");
+    });
+}
 </script>
