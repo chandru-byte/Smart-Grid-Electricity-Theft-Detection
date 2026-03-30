@@ -755,19 +755,25 @@ setInterval(fetchData, 5000);
 function logout(){
     console.log("Logout clicked");  // debug
 
-    fetch("/logout")
-    .then(res => {
-        console.log("Response:", res);
+    let confirmLogout = confirm("⚠ Are you sure you want to logout?");
 
-        if(res.ok){
-            window.location.href = "/";
-        } else {
-            alert("Logout failed");
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Server error");
-    });
+    if(confirmLogout){
+        fetch("/logout")
+        .then(res => {
+            console.log("Response:", res);
+
+            if(res.ok){
+                window.location.href = "/";
+            } else {
+                alert("Logout failed");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Server error");
+        });
+    } else {
+        console.log("Logout cancelled");
+    }
 }
 </script>
