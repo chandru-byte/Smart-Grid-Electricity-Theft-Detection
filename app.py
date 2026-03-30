@@ -144,9 +144,8 @@ def predict():
     except:
         return jsonify({"error":"Prediction failed"}),500
 
-    if result["prediction"]==1:
-        send_email_alert()
-
+    if result["prediction"] == 1 or result["theft_probability"] > 0.5:
+        send_email_alert(result)
     reading_history.append({
         "time":datetime.utcnow().isoformat(),
         "prediction":result["prediction"],
@@ -165,6 +164,3 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
   
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
