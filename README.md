@@ -15,20 +15,6 @@ This project monitors electricity usage and detects abnormal patterns that indic
 
 ---
 
-## 📸 Dashboard Preview
-
-### 🟢 Normal Monitoring
-
-<img width="938" height="535" alt="Screenshot 2026-04-07 221004" src="https://github.com/user-attachments/assets/9d5ec6ac-bc43-41b9-aa19-f665597cf6ef" />
-
-
-### 🔴 Theft Detection Alert
-
-<img width="1892" height="1077" alt="Screenshot 2026-04-07 221848" src="https://github.com/user-attachments/assets/42266902-c44c-4939-aa09-c5a877242907" />
-
-
----
-
 ## ⚙️ Features
 
 ✔ Real-time electricity monitoring
